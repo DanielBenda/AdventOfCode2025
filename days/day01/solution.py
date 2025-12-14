@@ -27,7 +27,6 @@ def solve():
             print(f"Unknown direction {direction}")
         if pointer > 99:
             pointer = pointer - 100
-        print(pointer)
         if pointer == 0:
             counter = counter + 1
 
@@ -35,6 +34,33 @@ def solve():
     result_1 = counter
     print(f"Day 01 - Part 1: {result_1}")
 
+    pointer = 50
+    counter = 0 
+
+    for direction, step in parsed:
+        print(pointer, direction, step)
+        if step > 99:
+            counter = counter + step//100 
+            step = step % 100
+
+        if direction == 'L':
+            if step > pointer & pointer > 0:
+                pointer = pointer + 100 - step
+                counter = counter + 1
+            else:
+                pointer = pointer - step    
+            if pointer == 0:
+                counter = counter + 1
+            if pointer < 0:
+                pointer = pointer + 100
+        elif direction == 'R':
+            pointer = pointer + step
+            if pointer > 99:
+                pointer = pointer - 100
+                counter = counter + 1
+        else:
+            print(f"Unknown direction {direction}")
+
     # part 2
-    result_2 = sum(len(line) for line in lines)
+    result_2 = counter
     print(f"Day 01 - Part 2: {result_2}")
