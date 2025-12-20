@@ -26,14 +26,26 @@ def solve():
                 if int(str(firstNumber) + str(secondNumber)) > result:
                     if index_1 != index_2:
                         result = int(str(firstNumber) + str(secondNumber))
-         
-        print(result)
         joltage = joltage + result
-
-    
-    # part 1
     print(f"Day 01 - Part 1: {joltage}")
 
+    joltage = 0
+    for line in lines:      
+        result = max_subsequence_number(line, 12)
+        joltage = joltage + int(result)
 
     # part 2
     print(f"Day 01 - Part 2: {joltage}")
+
+
+def max_subsequence_number(s, k):
+    stack = []
+    to_remove = len(s) - k
+
+    for ch in s:
+        while stack and to_remove > 0 and stack[-1] < ch:
+            stack.pop()
+            to_remove -= 1
+        stack.append(ch)
+
+    return "".join(stack[:k])
