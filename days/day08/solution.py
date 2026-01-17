@@ -57,6 +57,18 @@ def solve():
     
     print(f"Day 08 - Part 1: {counter}")
 
+    last_pair = None
+
+    for distance, i, j in distances:
+        if union(i, j):
+            unique_roots = {find(k) for k in range(n)}
+            if len(unique_roots) == 1:
+                last_pair = (coordinates[i], coordinates[j])
+                break
+
+    x1, x2 = last_pair[0][0], last_pair[1][0]
+    counter = x1 * x2
+
     print(f"Day 08 - Part 2: {counter}")
 
 def find_distances(coordinates):
