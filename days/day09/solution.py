@@ -20,8 +20,9 @@ def solve():
     print(f"Day 09 - Part 1: {result}")
 
     rectangles = find_rectangles_in_polygon(coordinates)
+    result = rectangles[0]
 
-    print(f"Day 09 - Part 2: {rectangles[0]}")
+    print(f"Day 09 - Part 2: {result}")
 
 def find_rectangles(coordinates):
     rectangles = []
